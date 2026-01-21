@@ -1,0 +1,2 @@
+./run_ingestion.sh: line 7: python: command not found
+/Users/krish/Odyn/rental_platform/postgres_vast/run_ingestion.sh: line 7: python: command not found
