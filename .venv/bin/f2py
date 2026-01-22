@@ -1,4 +1,4 @@
-#!/Users/krish/Desktop/Odyn/rental_platform/.venv/bin/python3.11
+#!/Users/krish/Odyn/rental_platform/.venv/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys

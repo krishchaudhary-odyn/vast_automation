@@ -1,6 +1,7 @@
 import requests
 import psycopg2
 import datetime
+import pandas as pd
 from typing import Dict, List
 
 # -----------------------
@@ -119,6 +120,17 @@ def store(rows: List[Dict]):
     cur.close()
     conn.close()
 
+def display():
+    # Display the table with all the data
+    conn = psycopg2.connect(**PG_CONFIG)
+    query = """SELECT * FROM public.gpu_offers_current;"""
+    df = pd.read_sql(query, conn)
+    pd.set_option("display.max_columns", None)
+    pd.set_option("display.width", 160)
+    pd.set_option("display.max_colwidth", None)
+    print(df)
+    conn.close()
+
 # -----------------------
 # MAIN
 # -----------------------
@@ -127,6 +139,8 @@ def main():
     rows = [canonicalize(o) for o in offers]
     store(rows)
     print(f"Ingested {len(rows)} offers at {datetime.datetime.utcnow()}")
+    display()
+    offer_id = int(input("Enter an offer ID for selection: "))
 
 if __name__ == "__main__":
     main()
